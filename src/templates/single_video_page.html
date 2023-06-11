@@ -2,7 +2,21 @@
 {% block mainpage %}
 <div class="row" style="margin-left: 400px; margin-top: -160px">
     <h2>Content</h2>
-    {{ video.title }}
-    {{ video.description }}
+    <div class="video">
+        <video id="my-video" class="video-js" controls
+               preload="auto" width="1000" height="800" data-setup="{}">
+        <source src="http://127.0.0.1:8000/videos/{{ video_id }}" type="video/mp4"/>
+    </video>
+    </div>
+    <div class="likes">
+        Likes: {{ likes }}
+    </div>
+    <div class="comments">
+        Comments:
+        {% for comment in comments %}
+            {{ comment.text }} <br>
+        {% endfor %}
+    </div>
 </div>
+<script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
 {% endblock %}

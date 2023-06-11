@@ -41,18 +41,18 @@ app.add_middleware(
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
     prefix="/auth/jwt",
-    tags=["auth"],
+    tags=["Auth"],
 )
 
 app.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/auth",
-    tags=["auth"],
+    tags=["Auth"],
 )
 
-app.include_router(router_comments)
-app.include_router(router_auth)
-app.include_router(router_likes)
-app.include_router(router_users)
+# app.include_router(router_auth)
 app.include_router(router_videos)
+app.include_router(router_users)
+app.include_router(router_likes)
 app.include_router(router_pages)
+app.include_router(router_comments)
