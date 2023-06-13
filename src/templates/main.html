@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
 {% block mainpage %}
 
-<div class="row" style="margin-left: 400px; margin-top: -160px">
+<div class="row">
     <h2>Content</h2>
     {% for v in videos %}
     <div class="row">
-        <div class="col-sm-4">
+<!--        <div class="col-sm-4">-->
             <div class="panel">
-                <img src="{{ url_for('static', path='/images/video_fon.png') }}" style="width: 400px; height: 280px">
-                <a href="{{ url_for('single_video_page', video_id=v.Video.id) }}"><h3>{{ v.Video.title }}</h3><br></a>
+                <img src="{{ url_for('static', path='/images/play_button_upd.jpg') }}" style="height: 280px">
+                <div style="width: 395px; margin-top: 10px">
+                    <a style="text-align: center; " href="{{ url_for('single_video_page', video_id=v.Video.id) }}">
+                        <h3>{{ v.Video.title }}</h3><br></a>
+                </div>
             </div>
-        </div>
+<!--        </div>-->
     </div>
     {% endfor %}
 </div>

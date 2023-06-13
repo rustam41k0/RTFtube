@@ -11,3 +11,7 @@ class Comment(BaseModel):
     text: str
     created_at: datetime
     updated_at: datetime
+
+
+class AddComment(BaseModel):
+    text: str

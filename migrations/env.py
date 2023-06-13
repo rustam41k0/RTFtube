@@ -13,7 +13,7 @@ from src.database import metadata, Base
 from src.comments.models import Comment
 from src.videos.models import Video
 from src.likes.models import Like
-from src.users.models import User, subscriptions
+from src.users.models import User, Subscriptions
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

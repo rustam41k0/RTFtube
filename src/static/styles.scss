@@ -1,16 +1,33 @@
+.header {
+  display: flex;
 
-body {
-  background-color: #222526;
-  color: #227fd0;
-}
-
-.header-text {
   h1 {
-    color: red;
+    position: absolute;
+
   }
+  .user-info {
+    float: right;
+    padding-right: 24px;
+  }
+
   text-align: center;
 }
 
 .video {
+  margin-top: 200px;
   width: 1380px;
+}
+
+//.header-text {
+//  width: 320px;
+//  background-color: antiquewhite;
+//}
+
+.nav-panel {
+  margin: 24px;
+
+}
+
+.main {
+  margin-left: 100px;
 }
