@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block mainpage %}
-<div class="row" style="margin-left: 400px; margin-top: -160px">
+<div class="row" style="margin-left: 100px; margin-top: -160px">
     <h2>Content</h2>
     <div class="video" style="margin-top: 150px">
         <video id="my-video" class="video-js" controls
@@ -8,6 +8,8 @@
             <source src="http://127.0.0.1:8000/videos/{{ video_id }}" type="video/mp4"/>
         </video>
     </div>
+    <h2>{{ title }}</h2>
+    <h4>{{ description }}</h4><br><br>
     <div class="likes">
         <h3>Likes: {{ likes }}</h3>
     </div>

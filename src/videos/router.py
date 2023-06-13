@@ -67,8 +67,7 @@ async def upload_video(
         new_video = Video(author_id=current_user.id,
                           title=title,
                           description=description,
-                          url=file_name,
-                          views=0)
+                          file=file_name)
         session.add(new_video)
         await session.commit()
         return {'file_name': file_name}

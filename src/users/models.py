@@ -7,20 +7,12 @@ from sqlalchemy.orm import relationship
 from src.database import Base
 
 
-# subscriptions = Table(
-#     'subscriptions',
-#     Base.metadata,
-#     Column('id', Integer, primary_key=True),
-#     Column('user', Integer, ForeignKey('user.id')),  # user_id
-#     Column('subscribed_to', Integer, ForeignKey('user.id')),  # subscribed_to_id
-# )
-
 class Subscriptions(Base):
     __tablename__ = 'subscriptions'
 
     id = Column(Integer, primary_key=True)
-    user = Column(Integer, ForeignKey('user.id'))  # user_id
-    subscribed_to = Column(Integer, ForeignKey('user.id'))  # subscribed_to_id
+    user = Column(Integer, ForeignKey('user.id', ondelete='CASCADE'))
+    subscribed_to = Column(Integer, ForeignKey('user.id', ondelete='CASCADE'))
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
@@ -35,18 +27,3 @@ class User(SQLAlchemyBaseUserTable[int], Base):
     is_active = Column(Boolean, default=True, nullable=False)
     is_superuser = Column(Boolean, default=False, nullable=False)
     is_verified = Column(Boolean, default=False, nullable=False)
-
-# subscribed_to = relationship(
-#         'User',
-#         secondary=subscriptions,
-#         primaryjoin=(subscriptions.c.user_id == id),
-#         secondaryjoin=(subscriptions.c.subscribed_to_id == id),
-#         back_populates='subscribers',
-#     )
-#     subscribers = relationship(
-#         'User',
-#         secondary=subscriptions,
-#         primaryjoin=(subscriptions.c.subscribed_to_id == id),
-#         secondaryjoin=(subscriptions.c.user_id == id),
-#         back_populates='subscribed_to',
-#     )

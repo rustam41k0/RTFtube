@@ -35,11 +35,10 @@ def ranged(
 async def open_file(request: Request,
                     video_id: int,
                     session: AsyncSession = Depends(get_async_session)) -> tuple:
-    try:
-        file = await session.get(Video, video_id)
-    except Exception as ex:
-        raise
-    path = Path(file.url)
+    file = await session.get(Video, video_id)
+    if file is None:
+        raise 'Video not found'
+    path = Path(file.file)
     file = path.open('rb')
     file_size = path.stat().st_size
 
