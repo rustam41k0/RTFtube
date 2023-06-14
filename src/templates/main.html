@@ -3,16 +3,21 @@
 
 <div class="row">
     <h2>Content</h2>
-    <div class="list_videos" style="display: flex; gap: 32px; margin-bottom: 24px; grid-template-columns: 400px repeat(auto-fill, 1fr); flex-wrap: wrap;">
-    {% for v in videos %}
-        <div class="one_video">
-            <img alt="" src="{{ url_for('static', path='/images/play_button_upd.jpg') }}" style="height: 280px">
-            <div style="width: 395px; margin-top: 10px">
-                <a style="text-align: center; " href="{{ url_for('single_video_page', video_id=v.Video.id) }}">
-                    <h3>{{ v.Video.title }}</h3><br></a>
+    <div class="list_videos"
+         style="display: flex; gap: 32px; margin-bottom: 24px; grid-template-columns: 400px repeat(auto-fill, 1fr); flex-wrap: wrap;">
+        {% if videos %}
+            {% for v in videos %}
+            <div class="one_video">
+                <img alt="" src="{{ url_for('static', path='/images/play_button_upd.jpg') }}" style="height: 280px">
+                <div style="width: 395px; margin-top: 10px">
+                    <a style="text-align: center; " href="{{ url_for('single_video_page', video_id=v.Video.id) }}">
+                        <h3>{{ v.Video.title }}</h3><br></a>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+            {% endfor %}
+        {% else %}
+            <h3>Нет ни одного видео!</h3>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

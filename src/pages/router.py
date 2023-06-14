@@ -22,7 +22,7 @@ templates = Jinja2Templates(directory="src/templates")
 
 
 @router.get("/", response_class=HTMLResponse, name='main_page')
-def get_base_page(request: Request):  # , current_user: User = Depends(get_current_user)):
+def get_base_page(request: Request):
     response = requests.get('http://127.0.0.1:8000/videos')
     videos = response.json()
     return templates.TemplateResponse("main.html", {"request": request, 'videos': videos})
@@ -53,21 +53,7 @@ async def get_video_page(video_id: int,
                                                                  })
 
 
-@router.get("/user_subs", response_class=HTMLResponse)
-async def user_subs(request: Request,
-                    current_user: User = Depends(get_current_user),
-                    session: AsyncSession = Depends(get_async_session)):
-    sub_query = select(Subscriptions).filter(Subscriptions.user == current_user.id)
-    subscriptions = await session.execute(sub_query)
-    return templates.TemplateResponse("user_subs.html", {"request": request,
-                                                         "subscriptions": subscriptions})
-
-
 @router.get("/404", response_class=HTMLResponse)
 def error_404(request: Request):
     return templates.TemplateResponse("404.html", {"request": request})
 
-
-@router.get("/login", response_class=HTMLResponse, name='login')
-def login_page(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request})
